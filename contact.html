@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ro">
+  
+  <head>
+    <title>Immobiliare RBD</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="menu.css">
+
+    <!-- Here is the beginning of map integration -->
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
+    <link rel="stylesheet" type="text/css" href="openstreetmap.css">
+
+    <!-- Javascript -->
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+    <script type="text/javascript">
+      // We initialize  latitude and longitude of Bucharest (center of the map)
+      var lat = 44.4614841;
+      var lon = 26.1355317;
+      var macarte = null;
+      // Function which initializes the map
+      function initMap() {
+          // Create object "macarte" and which inserts it in the HTML element which has the "map" ID
+          macarte = L.map('map').setView([lat, lon], 11);
+          // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
+          L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+              // Il est toujours bien de laisser le lien vers la source des données
+              attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+              minZoom: 1,
+              maxZoom: 20
+          }).addTo(macarte);
+	  var marker = L.marker([lat, lon]).addTo(macarte);
+      }
+      window.onload = function(){
+	  // Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
+	  initMap(); 
+      };
+    </script>
+
+    <!-- Here is the end of map integration -->
+    
+  </head>
+
+  <body>
+    
+    <!-- navigation bar -->
+    <div class="navbar">
+      <!-- first navigation bar -->
+      <div class="navbar1">
+	<a href="https://google.com">
+	  <img class="icon" src="romania-icon.png" alt="ro">
+	  <span class="text">RO</span>
+	</a>
+	<a href="https://google.com">
+	  <img class="icon" src="us-icon.png" alt="us">
+	  <span class="text">US</span>
+	</a>
+	<a href="tel:0249514366">
+	  <img class="icon" src="phone-icon.png" alt="phone">
+	  <span class="text">0249514366</span>
+	</a>
+	<a href="mailto:office@rbd.ro">
+	  <img class="icon" src="mail-icon.png" alt="mail">
+	  <span class="text">office@rbd.ro</span>
+	</a>
+      </div>
+
+      <!-- second navigation bar (menu) -->
+      <div class="navbar2">
+	<a href="index.html">Prima Pagina</a>
+	<a href="echipa.html">ECHIPA</a>
+	<div class="dropdown">
+	  <button class="dropbtn">
+	    VANZARI
+	  </button>
+	  <div class="dropdown-content">
+	    <a href="apartamente_vanzare.html">Apartamente de Vanzare Bucuresti</a>
+	    <a href="case_vanzare.html">Case de Vanzare Bucuresti</a>
+	  </div>
+	</div> 
+	<div class="dropdown">
+	  <button class="dropbtn">
+	    INCHIRIERI
+	  </button>
+	  <div class="dropdown-content">
+	    <a href="apartamente_inchiriat.html">Apartamente de inchiriat Bucuresti</a>
+	    <a href="case_inchiriat.html">Case de inchiriat Bucuresti</a>
+	    <a href="spatii_inchiriat.html">Spatii de inchiriat</a>
+	  </div>
+	</div> 
+	<a class="selected" href="contact.html">CONTACT</a>
+      </div>
+    </div>
+
+    <!-- body of the document -->
+    <div class="body">
+      <div class="contact_text">
+	<h1 class="entry-title">Contact</h1>
+	<p></p>
+	<p>Telefon: 0249 514 366</p>
+	<p>Mobil: 0767 308 333</p>
+	<p>
+	  Email:
+	  <a href="mailto:office@rbd.ro">office@rbd.ro</a>
+	</p>
+	<p>Adresa: Str. Pancota nr.1,</p>
+	<p>Cladirea A3, corp 2,etaj Parter, sector 2, Bucuresti</p>
+	<p></p>
+      </div>
+
+      <!-- The map will be shown here : -->
+      <div id="map">
+      </div>
+
+    </div>
+    
+  </body>
+
+</html>
